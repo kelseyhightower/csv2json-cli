@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
 
@@ -12,6 +11,7 @@ import (
 
 var (
 	infile string
+	columns = []string{"Name","Date","Title"}
 )
 
 func init() {
@@ -28,7 +28,7 @@ func main() {
 		log.Fatal(err)
 	}
 	defer f.Close()
-	jsonData, err := csv2json.Convert(f)
+	jsonData, err := csv2json.Convert(f, columns)
 	if err != nil {
 		log.Fatal(err)
 	}
